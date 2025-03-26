@@ -14,6 +14,12 @@ Development: https://github.com/climate-resource/gradient-aware-harmonisation
 Documentation: https://gradient-aware-harmonisation.readthedocs.io
 
 gradient aware harmonisation of timeseries.
+It is provided, by default, as a library.
+If you wish to use it as an application,
+we recommend installing the locked version of the package,
+i.e. gradient-aware-harmonisation-locked,
+because this pins the versions of key dependencies
+(which avoids breakages because of updates to dependencies).
 
 
 Current build status
@@ -35,6 +41,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gradient--aware--harmonisation-green.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gradient-aware-harmonisation.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gradient-aware-harmonisation.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gradient-aware-harmonisation.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gradient--aware--harmonisation--locked-green.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation-locked) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gradient-aware-harmonisation-locked.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation-locked) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gradient-aware-harmonisation-locked.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation-locked) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gradient-aware-harmonisation-locked.svg)](https://anaconda.org/conda-forge/gradient-aware-harmonisation-locked) |
 
 Installing gradient-aware-harmonisation
 =======================================
@@ -46,16 +53,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gradient-aware-harmonisation` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `gradient-aware-harmonisation, gradient-aware-harmonisation-locked` can be installed with `conda`:
 
 ```
-conda install gradient-aware-harmonisation
+conda install gradient-aware-harmonisation gradient-aware-harmonisation-locked
 ```
 
 or with `mamba`:
 
 ```
-mamba install gradient-aware-harmonisation
+mamba install gradient-aware-harmonisation gradient-aware-harmonisation-locked
 ```
 
 It is possible to list all of the versions of `gradient-aware-harmonisation` available on your platform with `conda`:
