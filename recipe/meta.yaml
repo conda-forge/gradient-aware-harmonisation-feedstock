@@ -1,37 +1,69 @@
-{% set name = "gradient-aware-harmonisation" %}
 {% set version = "0.4.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: gradient-aware-harmonisation-suite
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/gradient_aware_harmonisation-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/g/gradient-aware-harmonisation/gradient_aware_harmonisation-{{ version }}.tar.gz
   sha256: c57f7d8b3aeef73a46d5b973867a3600e8247c947dd88ba0031257d184bedd8e
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python {{ python_min }}
-    - pdm-backend
-    - pip
-  run:
-    - python >={{ python_min }}
-    - attrs >=24.3.0
-    - numpy >=1.25.0
-    - pandas >=2.2.3
+    - python
 
-test:
-  imports:
-    - gradient_aware_harmonisation
-  commands:
-    - pip check
-  requires:
-    - pip
+outputs:
+    - name: gradient-aware-harmonisation
+      build:
+        noarch: python
+        script: { { PYTHON } } -m pip install . -vv --no-deps --no-build-isolation
+
+      requirements:
+        host:
+          - python {{ python_min }}
+          - pdm-backend
+          - pip
+        run:
+          - python >={{ python_min }}
+          - attrs >=24.3.0
+          - numpy >=1.25.0
+          - pandas >=2.2.3
+
+        test:
+          imports:
+            - gradient_aware_harmonisation
+          commands:
+            - pip check
+          requires:
+            - pip
+
+    - name: gradient-aware-harmonisation-locked
+      build:
+        noarch: python
+
+      requirements:
+        host:
+          - python {{ python_min }}
+          - pdm-backend
+          - pip
+        run:
+          - python >={{ python_min }}
+          - {{ pin_subpackage('gradient-aware-harmonisation', exact=True) }}
+          - {{ pin_compatible('attrs', lower_bound='24.3.0', upper_bound='24.3.1') }}
+          - {{ pin_compatible('numpy', lower_bound='2.0.2', upper_bound='2.0.3') }}
+          - {{ pin_compatible('pandas', lower_bound='2.2.3', upper_bound='2.2.4') }}
+
+        test:
+          imports:
+            - gradient_aware_harmonisation
+          commands:
+            - pip check
+          requires:
+            - pip
+            - python {{ python_min }}
 
 about:
   home: https://gradient-aware-harmonisation.readthedocs.io
@@ -40,9 +72,16 @@ about:
   license_file: LICENCE
   description: |
     gradient aware harmonisation of timeseries.
+    It is provided, by default, as a library.
+    If you wish to use it as an application,
+    we recommend installing the locked version of the package,
+    i.e. gradient-aware-harmonisation-locked,
+    because this pins the versions of key dependencies
+    (which avoids breakages because of updates to dependencies).
   doc_url: https://gradient-aware-harmonisation.readthedocs.io
   dev_url: https://github.com/climate-resource/gradient-aware-harmonisation
 
 extra:
+  feedstock-name: gradient-aware-harmonisation
   recipe-maintainers:
     - florence-bockting
